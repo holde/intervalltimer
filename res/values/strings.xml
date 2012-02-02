@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World!</string>
+    <string name="app_name">Intervall Timer</string>
+    <string name="mainAddTimer">Add new timer</string>
+    <string name="prepTime">seconds for preparation</string>
+    <string name="durationTime">seconds duration</string>
+    <string name="repetitionTime">times</string>
+    <string name="restTime">seconds rest between repetitions</string>
+</resources>
