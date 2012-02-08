@@ -4,54 +4,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    <TextView
-        android:id="@+id/mainGo"
+        <Button
+        android:id="@+id/mainAddTimerBtn"
+        android:textSize="30sp"
+        android:layout_margin="10sp"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:text="GO"
-        android:textSize="35dp" />
-    <TextView
-        android:id="@+id/mainAddTimer"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:text="@string/mainAddTimer"
-        android:textSize="35dp" />
-
-    <TextView
-        android:id="@+id/timer1"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="ADD TIMER" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
+        <ListView
+			android:id="@+id/exerciseListLv"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
 
 </LinearLayout>
+
+<!-- 	android:id="@android:id/list" -->

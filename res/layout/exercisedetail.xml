@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+<!-- 		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:id="@+id/exerciseTitleLl"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" >
+		    <TextView
+		        android:id="@+id/exerciseTitleTv1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="30sp" />
+		    <TextView
+		        android:id="@+id/exerciseTitleTv2"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content" />
+		</LinearLayout> -->
+    <Button
+        android:id="@+id/exerciseRunBt"
+        android:background="@color/button"
+        android:textColor="@color/buttontext"
+        android:textSize="30sp"
+        android:layout_margin="10sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="GO" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+	    <LinearLayout
+	        android:id="@+id/exerciseListLl"
+	        android:orientation="vertical"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	        
+	    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

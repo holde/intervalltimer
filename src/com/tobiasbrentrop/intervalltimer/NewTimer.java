@@ -52,7 +52,7 @@ public class NewTimer extends BaseActivity implements OnClickListener {
 			int reps = Integer.parseInt((((EditText)findViewById(R.id.repetitionTime)).getText().toString()));
 			int rests = Integer.parseInt((((EditText)findViewById(R.id.restTime)).getText().toString()));
 			int[] times = {preps, durs, reps, rests};
-			addTimes(times);
+			//addTimes(times);
 		} catch (NumberFormatException e) {
 			Log.e(TAG, "No Integer");
 		}

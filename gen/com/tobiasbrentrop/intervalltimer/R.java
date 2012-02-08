@@ -10,39 +10,53 @@ package com.tobiasbrentrop.intervalltimer;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int blue=0x7f050004;
+        public static final int button=0x7f050001;
+        public static final int buttontext=0x7f050002;
+        public static final int darkorange=0x7f050005;
+        public static final int green=0x7f050003;
+        public static final int orange=0x7f050000;
+    }
     public static final class drawable {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int durationTime=0x7f06000b;
-        public static final int linearLayout1=0x7f060008;
-        public static final int linearLayout2=0x7f06000a;
-        public static final int linearLayout3=0x7f06000c;
-        public static final int linearLayout4=0x7f06000e;
-        public static final int linearLayout5=0x7f060010;
-        public static final int mainAddTimer=0x7f060002;
-        public static final int mainGo=0x7f060001;
-        public static final int mainLL=0x7f060000;
-        public static final int newTimerCancel=0x7f060012;
-        public static final int newTimerOK=0x7f060011;
-        public static final int prepTime=0x7f060009;
-        public static final int repetitionTime=0x7f06000d;
-        public static final int restTime=0x7f06000f;
-        public static final int runButton=0x7f060013;
-        public static final int runProgressBar=0x7f060016;
-        public static final int runTextView=0x7f060015;
-        public static final int runTotalTimer=0x7f060017;
-        public static final int stopButton=0x7f060014;
-        public static final int textView2=0x7f060004;
-        public static final int textView3=0x7f060005;
-        public static final int textView4=0x7f060006;
-        public static final int textView5=0x7f060007;
-        public static final int timer1=0x7f060003;
+        public static final int currExTv=0x7f070013;
+        public static final int durationTime=0x7f07000a;
+        public static final int exerciseListLl=0x7f070001;
+        public static final int exerciseListLv=0x7f070004;
+        public static final int exerciseRunBt=0x7f070000;
+        public static final int linearLayout1=0x7f070007;
+        public static final int linearLayout2=0x7f070009;
+        public static final int linearLayout3=0x7f07000b;
+        public static final int linearLayout4=0x7f07000d;
+        public static final int linearLayout5=0x7f07000f;
+        public static final int mainAddTimerBtn=0x7f070003;
+        public static final int mainLL=0x7f070002;
+        public static final int newTimerCancel=0x7f070011;
+        public static final int newTimerOK=0x7f070010;
+        public static final int nextBtn=0x7f07001a;
+        public static final int nextExTv=0x7f070014;
+        public static final int prepTime=0x7f070008;
+        public static final int prevBtn=0x7f070019;
+        public static final int prevExTv=0x7f070012;
+        public static final int repetitionTime=0x7f07000c;
+        public static final int restTime=0x7f07000e;
+        public static final int runPauseBt=0x7f07001b;
+        public static final int runTimerCurrentTimeLeftTv=0x7f070017;
+        public static final int runTimerCycle=0x7f070018;
+        public static final int runTimerTotalTimeLeftTv=0x7f070016;
+        public static final int runTimerTypeTv=0x7f070015;
+        public static final int text1=0x7f070005;
+        public static final int text2=0x7f070006;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
-        public static final int newtimer=0x7f030001;
-        public static final int runtimer=0x7f030002;
+        public static final int exercisedetail=0x7f030000;
+        public static final int main=0x7f030001;
+        public static final int mainlistviewentry=0x7f030002;
+        public static final int newtimer=0x7f030003;
+        public static final int runtimer=0x7f030004;
     }
     public static final class raw {
         public static final int beep=0x7f040000;
@@ -50,16 +64,17 @@ public final class R {
         public static final int beep3=0x7f040002;
         public static final int begin=0x7f040003;
         public static final int complete=0x7f040004;
-        public static final int rest=0x7f040005;
-        public static final int three21=0x7f040006;
+        public static final int next=0x7f040005;
+        public static final int rest=0x7f040006;
+        public static final int three21=0x7f040007;
     }
     public static final class string {
-        public static final int app_name=0x7f050001;
-        public static final int durationTime=0x7f050004;
-        public static final int hello=0x7f050000;
-        public static final int mainAddTimer=0x7f050002;
-        public static final int prepTime=0x7f050003;
-        public static final int repetitionTime=0x7f050005;
-        public static final int restTime=0x7f050006;
+        public static final int app_name=0x7f060001;
+        public static final int durationTime=0x7f060004;
+        public static final int hello=0x7f060000;
+        public static final int mainAddTimer=0x7f060002;
+        public static final int prepTime=0x7f060003;
+        public static final int repetitionTime=0x7f060005;
+        public static final int restTime=0x7f060006;
     }
 }
