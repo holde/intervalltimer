@@ -21,7 +21,10 @@ public class Exercise {
 	public Exercise(Cursor cursor) {
 		if (cursor.moveToFirst()) {
 			do {
-				ExerciseUnit eUnit = new ExerciseUnit(cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5));
+				ExerciseUnit eUnit = new ExerciseUnit(
+						cursor.getString(1), cursor.getInt(2),
+						cursor.getInt(3), cursor.getInt(4),
+						cursor.getInt(5));
 //				Log.i(TAG, cursor.getString(1)+ cursor.getInt(2)+ cursor.getInt(3)+ cursor.getInt(4)+ cursor.getInt(5));
 				exercises.add(eUnit);
 				totalExerciseTime += eUnit.getTotalExerciseTime();
@@ -40,7 +43,7 @@ public class Exercise {
 			leftTimes[i] = countTime;
 		}
 	}
-	
+
 	public void addExerciseUnit(ExerciseUnit exerciseUnit) {
 		
 	}

@@ -26,7 +26,15 @@
             		android:screenOrientation="portrait"
         			android:label="@string/mainAddTimer">
         </activity>
-    
-
+        <activity 	android:name=".AddExerciseActivity"
+            		android:screenOrientation="portrait"
+            		android:theme="@android:style/Theme.Dialog"
+        			android:label="@string/mainAddTimer">
+        </activity>   
+        <activity 	android:name=".AddUnitActivity"
+            		android:screenOrientation="portrait"
+            		android:theme="@android:style/Theme.Dialog"
+        			android:label="@string/mainAddTimer">
+        </activity>   
     </application>
 </manifest>

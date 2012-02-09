@@ -108,13 +108,13 @@ public class RunTimer extends BaseActivity {
 	
 	private void updateExerciseUnits() {
 		if (prevUnitId >= 0) {
-			((TextView)findViewById(R.id.prevExTv)).setText(currentExercise.getExerciseUnit(prevUnitId).getExerciseName());
+			((TextView)findViewById(R.id.prevExTv)).setText(currentExercise.getExerciseUnit(prevUnitId).getName());
 		} else {
 			((TextView)findViewById(R.id.prevExTv)).setText("");
 		}
-		((TextView)findViewById(R.id.currExTv)).setText(currentUnit.getExerciseName());
+		((TextView)findViewById(R.id.currExTv)).setText(currentUnit.getName());
 		if (nextUnitId < currentExercise.getExerciseCount()) {
-			((TextView)findViewById(R.id.nextExTv)).setText(currentExercise.getExerciseUnit(nextUnitId).getExerciseName());
+			((TextView)findViewById(R.id.nextExTv)).setText(currentExercise.getExerciseUnit(nextUnitId).getName());
 		} else {
 			((TextView)findViewById(R.id.nextExTv)).setText("");
 		}
@@ -153,7 +153,7 @@ public class RunTimer extends BaseActivity {
 	}
 	
 	private void startTimer() {
-		Log.i(TAG, "Ex:"+currentUnit.getExerciseName()+" -- Unit:"+currUnitId+" -- Progress:"+unitProgress+" -- UnitTime:"+exTimeLeft);
+		Log.i(TAG, "Ex:"+currentUnit.getName()+" -- Unit:"+currUnitId+" -- Progress:"+unitProgress+" -- UnitTime:"+exTimeLeft);
 		if (exTimeLeft == 0) {
             if (unitProgress < currentUnit.getCount() - 1) {
             	unitProgress++;

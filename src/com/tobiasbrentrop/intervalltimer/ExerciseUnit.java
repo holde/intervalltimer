@@ -13,8 +13,8 @@ public class ExerciseUnit {
 		private int count;
 		private int[] timesArray;
 		
-		public ExerciseUnit(String exerciseName, int preparationTime, int durationTime, int repetitions, int restTime) {
-			this.exerciseName = exerciseName;
+		public ExerciseUnit(String name, int preparationTime, int durationTime, int repetitions, int restTime) {
+			this.exerciseName = name;
 			this.durationTime = durationTime;
 			this.preparationTime = preparationTime;
 			this.repetitions = repetitions;
@@ -36,17 +36,17 @@ public class ExerciseUnit {
 			}
 		}
 		
-		public String getExerciseName() {
+		public String getName() {
 			return exerciseName;
 		}
 		
 		public String toString() {
-			return ""+preparationTime+"s preparation / "+repetitions+" * "+durationTime+"s exercise / "+restTime+"s rest";
+			return ""+preparationTime+"s prep / "+repetitions+" * "+durationTime+"s exercise / "+restTime+"s rest";
 		}
 		public int getPreparationTime() {
 			return preparationTime;
 		}
-		public int getDurationTime() {
+		public int getDuration() {
 			return durationTime;
 		}
 		public int getRepetitions() {
