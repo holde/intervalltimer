@@ -1,0 +1,8 @@
+<resources>
+    <style name="bars_linearlayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">58dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/gradient_background</item>
+    </style>
+</resources>

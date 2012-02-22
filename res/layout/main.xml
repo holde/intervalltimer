@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainLL"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-        <Button
-        android:id="@+id/mainAddTimerBtn"
-        android:textSize="30sp"
-        android:layout_margin="10sp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="ADD TIMER" />
-
-        <ListView
-			android:id="@+id/exerciseListLv"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent" >
-        </ListView>
-
+    <include layout="@layout/include_topbar"/>
+    <ListView
+		 android:id="@+id/listview"
+         android:layout_width="match_parent"
+         android:background="@color/listview_background"
+         android:scrollingCache="false"
+         android:fadingEdge="none"
+         android:layout_weight="1"
+         android:layout_height="0dp" />
+    <LinearLayout style="@style/bottombar_linearlayout">
+		<include layout="@layout/include_bottom_add_btn"/>
+    </LinearLayout>        
 </LinearLayout>
-
-<!-- 	android:id="@android:id/list" -->

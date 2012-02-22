@@ -1,5 +1,8 @@
 package com.tobiasbrentrop.intervalltimer;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,31 +13,37 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 public class ExerciseDetailActivity extends BaseActivity {
 
 	private static final String TAG = "IT: ExerciseDetailActivity";
-	private Exercise currentExercise;
 	private DbHelper db;
 	Cursor unitCursor;
+	private long unitId;
+	private long exerciseId;
+
+	final static int EDIT = 0;
+	final static int DELETE = 1;
+	final static int DETAILS = 2;
+	final static int START = 3;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.exercisedetail);
-		final long exerciseId = getIntent().getLongExtra("exerciseId", 0);
+		// get current id from extra
+		exerciseId = getIntent().getLongExtra("exerciseId", 0);
+		// global db
 		db = ((IntervallTimerApp)getApplicationContext()).getDb();
-		Log.i(TAG, "exid: "+exerciseId);
-		unitCursor = db.selectUnitsFromExercise(exerciseId);
-		currentExercise = new Exercise(unitCursor);
-		setTitle(currentExercise.getExerciseTitle()+": "+currentExercise.toString());
-		
+		// set title
+		((TextView)findViewById(R.id.topbar_title)).setText(db.getExerciseName(exerciseId)+"\n"+db.getExerciseInfo(exerciseId));
 		// listview stuff
 		unitCursor = db.selectUnitsFromExercise(exerciseId);
         startManagingCursor(unitCursor);
@@ -44,66 +53,97 @@ public class ExerciseDetailActivity extends BaseActivity {
                 unitCursor,
                 new String[] {"name", "info"},
                 new int[] {R.id.text1, R.id.text2});
-        ListView exDetailLv = (ListView)findViewById(R.id.exerciseDetailsLv);
+        ListView exDetailLv = (ListView)findViewById(R.id.listview);
         exDetailLv.setAdapter(adapter);
         registerForContextMenu(exDetailLv);
         exDetailLv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-						Intent exDetail = new Intent(ExerciseDetailActivity.this, ExerciseDetailActivity.class);
-						exDetail.putExtra("exerciseId", id);
-						Log.i(TAG, "Show Detail for Exercise "+id);
+						startEditActivity(exerciseId, id);
 			}
 		});
-        
         // on button click
-		((Button)findViewById(R.id.exerciseRunBt)).setOnClickListener(new OnClickListener() {
-			
+		((ImageButton)findViewById(R.id.bottom_run_btn)).setOnClickListener(new OnClickListener() {
+			// run timer
 			@Override
 			public void onClick(View v) {
 				Intent runTimer = new Intent(ExerciseDetailActivity.this, RunTimer.class);
 				runTimer.putExtra("exerciseId", exerciseId);
 				startActivity(runTimer);
+				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 			}
 		});
-		((Button)findViewById(R.id.exerciseAddBtn)).setOnClickListener(new OnClickListener() {
-			
+		((ImageButton)findViewById(R.id.bottom_add_btn)).setOnClickListener(new OnClickListener() {
+			// add/edit unit
 			@Override
 			public void onClick(View v) {
-				Intent addUnit = new Intent(ExerciseDetailActivity.this, AddUnitActivity.class);
-				addUnit.putExtra("exerciseId", exerciseId);
-				startActivityForResult(addUnit, 0);
+				startEditActivity(exerciseId, 0);
 			}
 		});		
+	}
+	protected void startEditActivity(long exerciseId, long unitId) {
+		Intent addUnit = new Intent(ExerciseDetailActivity.this, AddUnitActivity.class);
+		addUnit.putExtra("exerciseId", exerciseId);
+		addUnit.putExtra("unitId", unitId);
+		Log.i(TAG, "Edit Unit "+unitId+" from Ex "+exerciseId);
+		startActivityForResult(addUnit, 0);
+		overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+		
 	}
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.add(0, 0, 0, "Edit");
-		menu.add(0, 1, 0, "Delete");
+//		menu.add(0, DETAILS, 0, "Details");
+//		menu.add(0, START, 0, "Start");
+		menu.add(0, EDIT, 0, "Edit");
+		menu.add(0, DELETE, 0, "Delete");
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		unitId = info.id;
 		switch (item.getItemId()) {
-		case 0: Log.i(TAG, "edit");
+		// edit unit
+		case EDIT: startEditActivity(exerciseId, unitId);
 				break;
-		case 1: db.deleteUnit(info.id);
-				// TODO: improve, requery deprecated
-				unitCursor.requery();
-				Log.i(TAG, "delete");
+		// delete unit
+		case DELETE: showDialog(0);
 				break;
 		}
 		return super.onContextItemSelected(item);
 	}	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		// TODO: improve, requery deprecated		
 		unitCursor.requery();
-		super.onActivityResult(requestCode, resultCode, data);
+		// TODO: maybe not efficient enough
+		// set title
+		((TextView)findViewById(R.id.topbar_title)).setText(db.getExerciseName(exerciseId)+"\n"+db.getExerciseInfo(exerciseId));
 	}
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+	}
+	// confirmation dialog
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		return new AlertDialog.Builder(ExerciseDetailActivity.this)
+        .setIcon(R.drawable.alert_dialog_icon)
+        .setTitle(R.string.alert_dialog_delete)
+        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            	db.deleteUnit(unitId, exerciseId);
+				// TODO: improve, requery deprecated
+        		unitCursor.requery();
+            }
+        })
+        .setNegativeButton(R.string.cancel, null)
+        .create();
+	}	
 }
 	

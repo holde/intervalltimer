@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World!</string>
-    <string name="app_name">Intervall Timer</string>
-    <string name="mainAddTimer">Add new timer</string>
-    <string name="prepTime">seconds for preparation</string>
-    <string name="durationTime">seconds duration</string>
-    <string name="repetitionTime">times</string>
-    <string name="restTime">seconds rest between repetitions</string>
+	<string name="app_name">Intervall Timer</string>
+    
+    <string name="bottom_add_btn">Add</string>
+    <string name="bottom_run_btn">Start Timer</string>
+    <string name="bottom_prev_btn">Previous</string>
+    <string name="bottom_next_btn">Next</string>
+    
+    
+    <string name="add_dialog_prep">Prep</string>
+    <string name="add_dialog_dur">Workout</string>
+    <string name="add_dialog_rep">Reps</string>
+    <string name="add_dialog_rest">Rest</string>    
+    <string name="add_exercise_hint">Enter Name</string>
+    
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    
+    <string name="alert_dialog_delete">Delete?</string>
 </resources>

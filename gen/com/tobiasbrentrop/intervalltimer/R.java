@@ -9,65 +9,216 @@ package com.tobiasbrentrop.intervalltimer;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int left_default=0x7f010003;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int left_end_range=0x7f010004;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int left_speed=0x7f010007;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int left_start_range=0x7f010002;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int left_unit=0x7f010006;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int left_wrap=0x7f010005;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int right_default=0x7f010009;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int right_end_range=0x7f01000a;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int right_speed=0x7f01000d;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int right_start_range=0x7f010008;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int right_unit=0x7f01000c;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int right_wrap=0x7f01000b;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int title_color=0x7f010001;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int title_text=0x7f010000;
     }
     public static final class color {
-        public static final int blue=0x7f050004;
-        public static final int button=0x7f050001;
-        public static final int buttontext=0x7f050002;
-        public static final int darkorange=0x7f050005;
-        public static final int green=0x7f050003;
-        public static final int orange=0x7f050000;
+        public static final int blue=0x7f050005;
+        public static final int button=0x7f050002;
+        public static final int buttontext=0x7f050003;
+        public static final int darkgrey=0x7f050007;
+        public static final int darkorange=0x7f050006;
+        public static final int darktransp=0x7f050008;
+        public static final int green=0x7f050004;
+        public static final int intervallpicker_title_border=0x7f050000;
+        public static final int intervallpicker_title_color=0x7f050001;
+        public static final int listview_background=0x7f050009;
+        public static final int listview_exercise_large=0x7f05000b;
+        public static final int listview_unit_large=0x7f05000a;
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int alert_dialog_icon=0x7f020000;
+        public static final int button_states=0x7f020001;
+        public static final int gradient_background=0x7f020002;
+        public static final int gradient_background_pressed=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icon=0x7f020005;
+        public static final int intervallpicker_title_border=0x7f020006;
+        public static final int test=0x7f020007;
+        public static final int textviewborder=0x7f020008;
+        public static final int timepicker_down_btn=0x7f020009;
+        public static final int timepicker_down_disabled=0x7f02000a;
+        public static final int timepicker_down_disabled_focused=0x7f02000b;
+        public static final int timepicker_down_normal=0x7f02000c;
+        public static final int timepicker_down_pressed=0x7f02000d;
+        public static final int timepicker_down_selected=0x7f02000e;
+        public static final int timepicker_input=0x7f02000f;
+        public static final int timepicker_input_disabled=0x7f020010;
+        public static final int timepicker_input_left_normal=0x7f020011;
+        public static final int timepicker_input_middle_normal=0x7f020012;
+        public static final int timepicker_input_normal=0x7f020013;
+        public static final int timepicker_input_pressed=0x7f020014;
+        public static final int timepicker_input_right_normal=0x7f020015;
+        public static final int timepicker_input_selected=0x7f020016;
+        public static final int timepicker_up_btn=0x7f020017;
+        public static final int timepicker_up_disabled=0x7f020018;
+        public static final int timepicker_up_disabled_focused=0x7f020019;
+        public static final int timepicker_up_normal=0x7f02001a;
+        public static final int timepicker_up_pressed=0x7f02001b;
+        public static final int timepicker_up_selected=0x7f02001c;
     }
     public static final class id {
-        public static final int addTimerBtn=0x7f070000;
-        public static final int addTimerEt=0x7f070001;
-        public static final int addUnitDurEt=0x7f070004;
-        public static final int addUnitNameEt=0x7f070002;
-        public static final int addUnitPrepEt=0x7f070003;
-        public static final int addUnitRepEt=0x7f070005;
-        public static final int addUnitRestEt=0x7f070006;
-        public static final int currExTv=0x7f07001b;
-        public static final int durationTime=0x7f070012;
-        public static final int exerciseAddBtn=0x7f07000a;
-        public static final int exerciseDetailsLv=0x7f07000b;
-        public static final int exerciseListLv=0x7f07000e;
-        public static final int exerciseRunBt=0x7f070009;
-        public static final int linearLayout1=0x7f07000f;
-        public static final int linearLayout2=0x7f070011;
-        public static final int linearLayout3=0x7f070013;
-        public static final int linearLayout4=0x7f070015;
-        public static final int linearLayout5=0x7f070017;
-        public static final int mainAddTimerBtn=0x7f07000d;
-        public static final int mainLL=0x7f07000c;
-        public static final int newTimerCancel=0x7f070019;
-        public static final int newTimerOK=0x7f070018;
-        public static final int nextBtn=0x7f070022;
-        public static final int nextExTv=0x7f07001c;
-        public static final int prepTime=0x7f070010;
-        public static final int prevBtn=0x7f070021;
-        public static final int prevExTv=0x7f07001a;
-        public static final int repetitionTime=0x7f070014;
-        public static final int restTime=0x7f070016;
-        public static final int runPauseBt=0x7f070023;
-        public static final int runTimerCurrentTimeLeftTv=0x7f07001f;
-        public static final int runTimerCycle=0x7f070020;
-        public static final int runTimerTotalTimeLeftTv=0x7f07001e;
-        public static final int runTimerTypeTv=0x7f07001d;
-        public static final int text1=0x7f070007;
-        public static final int text2=0x7f070008;
+        public static final int add_dialog_cancel_btn=0x7f08000e;
+        public static final int add_dialog_cool=0x7f080005;
+        public static final int add_dialog_dur=0x7f080002;
+        public static final int add_dialog_name=0x7f080000;
+        public static final int add_dialog_ok_btn=0x7f08000d;
+        public static final int add_dialog_prep=0x7f080001;
+        public static final int add_dialog_rep=0x7f080003;
+        public static final int add_dialog_rest=0x7f080004;
+        public static final int bottom_add_btn=0x7f080009;
+        public static final int bottom_next_btn=0x7f08000a;
+        public static final int bottom_prev_btn=0x7f08000b;
+        public static final int bottom_run_btn=0x7f08000c;
+        public static final int currExTv=0x7f080015;
+        public static final int decrement=0x7f080013;
+        public static final int increment=0x7f080012;
+        public static final int intervallpicker_title_tv=0x7f08001b;
+        public static final int listview=0x7f080008;
+        public static final int minute=0x7f08001c;
+        public static final int nextExTv=0x7f080016;
+        public static final int prevExTv=0x7f080014;
+        public static final int runTimerCurrentTimeLeftTv=0x7f080019;
+        public static final int runTimerCycle=0x7f08001a;
+        public static final int runTimerTotalTimeLeftTv=0x7f080018;
+        public static final int runTimerTypeTv=0x7f080017;
+        public static final int second=0x7f08001d;
+        public static final int text1=0x7f080006;
+        public static final int text2=0x7f080007;
+        public static final int timepicker_input=0x7f080010;
+        public static final int timepicker_unit=0x7f080011;
+        public static final int topbar_title=0x7f08000f;
     }
     public static final class layout {
         public static final int addexercise=0x7f030000;
         public static final int addunit=0x7f030001;
         public static final int exdetaillistviewentry=0x7f030002;
         public static final int exercisedetail=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int mainlistviewentry=0x7f030005;
-        public static final int newtimer=0x7f030006;
-        public static final int runtimer=0x7f030007;
+        public static final int include_bottom_add_btn=0x7f030004;
+        public static final int include_bottom_next_btn=0x7f030005;
+        public static final int include_bottom_prev_btn=0x7f030006;
+        public static final int include_bottom_run_btn=0x7f030007;
+        public static final int include_divider=0x7f030008;
+        public static final int include_icon=0x7f030009;
+        public static final int include_ok_cancel=0x7f03000a;
+        public static final int include_topbar=0x7f03000b;
+        public static final int include_topbar_title=0x7f03000c;
+        public static final int main=0x7f03000d;
+        public static final int mainlistviewentry=0x7f03000e;
+        public static final int number_picker=0x7f03000f;
+        public static final int runtimer=0x7f030010;
+        public static final int time_picker=0x7f030011;
     }
     public static final class raw {
         public static final int beep=0x7f040000;
@@ -80,12 +231,267 @@ public final class R {
         public static final int three21=0x7f040007;
     }
     public static final class string {
+        public static final int add_dialog_dur=0x7f060007;
+        public static final int add_dialog_prep=0x7f060006;
+        public static final int add_dialog_rep=0x7f060008;
+        public static final int add_dialog_rest=0x7f060009;
+        public static final int add_exercise_hint=0x7f06000a;
+        public static final int alert_dialog_delete=0x7f06000d;
         public static final int app_name=0x7f060001;
-        public static final int durationTime=0x7f060004;
+        public static final int bottom_add_btn=0x7f060002;
+        public static final int bottom_next_btn=0x7f060005;
+        public static final int bottom_prev_btn=0x7f060004;
+        public static final int bottom_run_btn=0x7f060003;
+        public static final int cancel=0x7f06000b;
         public static final int hello=0x7f060000;
-        public static final int mainAddTimer=0x7f060002;
-        public static final int prepTime=0x7f060003;
-        public static final int repetitionTime=0x7f060005;
-        public static final int restTime=0x7f060006;
+        public static final int ok=0x7f06000c;
     }
+    public static final class style {
+        public static final int bars_linearlayout=0x7f070000;
+        public static final int bottombar_buttons=0x7f070001;
+        public static final int bottombar_linearlayout=0x7f070002;
+        public static final int dialog_linearlayout=0x7f070003;
+        public static final int topbar_linearlayout=0x7f070004;
+    }
+    public static final class styleable {
+        /** Attributes that can be used with a timepicker.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #timepicker_left_default com.tobiasbrentrop.intervalltimer:left_default}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_left_end_range com.tobiasbrentrop.intervalltimer:left_end_range}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_left_speed com.tobiasbrentrop.intervalltimer:left_speed}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_left_start_range com.tobiasbrentrop.intervalltimer:left_start_range}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_left_unit com.tobiasbrentrop.intervalltimer:left_unit}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_left_wrap com.tobiasbrentrop.intervalltimer:left_wrap}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_right_default com.tobiasbrentrop.intervalltimer:right_default}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_right_end_range com.tobiasbrentrop.intervalltimer:right_end_range}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_right_speed com.tobiasbrentrop.intervalltimer:right_speed}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_right_start_range com.tobiasbrentrop.intervalltimer:right_start_range}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_right_unit com.tobiasbrentrop.intervalltimer:right_unit}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_right_wrap com.tobiasbrentrop.intervalltimer:right_wrap}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_title_color com.tobiasbrentrop.intervalltimer:title_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #timepicker_title_text com.tobiasbrentrop.intervalltimer:title_text}</code></td><td></td></tr>
+           </table>
+           @see #timepicker_left_default
+           @see #timepicker_left_end_range
+           @see #timepicker_left_speed
+           @see #timepicker_left_start_range
+           @see #timepicker_left_unit
+           @see #timepicker_left_wrap
+           @see #timepicker_right_default
+           @see #timepicker_right_end_range
+           @see #timepicker_right_speed
+           @see #timepicker_right_start_range
+           @see #timepicker_right_unit
+           @see #timepicker_right_wrap
+           @see #timepicker_title_color
+           @see #timepicker_title_text
+         */
+        public static final int[] timepicker = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#left_default}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:left_default
+        */
+        public static final int timepicker_left_default = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#left_end_range}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:left_end_range
+        */
+        public static final int timepicker_left_end_range = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#left_speed}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:left_speed
+        */
+        public static final int timepicker_left_speed = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#left_start_range}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:left_start_range
+        */
+        public static final int timepicker_left_start_range = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#left_unit}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:left_unit
+        */
+        public static final int timepicker_left_unit = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#left_wrap}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:left_wrap
+        */
+        public static final int timepicker_left_wrap = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#right_default}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:right_default
+        */
+        public static final int timepicker_right_default = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#right_end_range}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:right_end_range
+        */
+        public static final int timepicker_right_end_range = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#right_speed}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:right_speed
+        */
+        public static final int timepicker_right_speed = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#right_start_range}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:right_start_range
+        */
+        public static final int timepicker_right_start_range = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#right_unit}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:right_unit
+        */
+        public static final int timepicker_right_unit = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#right_wrap}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:right_wrap
+        */
+        public static final int timepicker_right_wrap = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#title_color}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:title_color
+        */
+        public static final int timepicker_title_color = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.tobiasbrentrop.intervalltimer.R.attr#title_text}
+          attribute's value can be found in the {@link #timepicker} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:title_text
+        */
+        public static final int timepicker_title_text = 0;
+    };
 }

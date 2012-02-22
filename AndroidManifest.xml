@@ -3,10 +3,15 @@
       package="com.tobiasbrentrop.intervalltimer"
       android:versionCode="1"
       android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk android:minSdkVersion="8"
+        		android:targetSdkVersion="8" />
 
-    <application  android:name="IntervallTimerApp" android:icon="@drawable/icon" android:label="@string/app_name">
+    <application  android:name="IntervallTimerApp"
+        		  android:icon="@drawable/icon"
+        		  android:theme="@android:style/Theme.NoTitleBar" 
+        		  android:label="@string/app_name">
        <activity 	android:name=".MainActivity"
+           			android:windowSoftInputMode="adjustPan"
            			android:screenOrientation="portrait"
                   	android:label="@string/app_name">
             <intent-filter>
@@ -14,27 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
- 		<activity 	android:name=".NewTimer"
- 		    		android:screenOrientation="portrait"
-        			android:label="@string/mainAddTimer">
-	    </activity>
       	<activity 	android:name=".RunTimer"
-      	    		android:screenOrientation="portrait"
-        			android:label="@string/mainAddTimer">
+      	    		android:screenOrientation="portrait">
         </activity>
         <activity 	android:name=".ExerciseDetailActivity"
-            		android:screenOrientation="portrait"
-        			android:label="@string/mainAddTimer">
+            		android:windowSoftInputMode="adjustPan"
+            		android:screenOrientation="portrait">
         </activity>
         <activity 	android:name=".AddExerciseActivity"
             		android:screenOrientation="portrait"
-            		android:theme="@android:style/Theme.Dialog"
-        			android:label="@string/mainAddTimer">
+            		android:windowSoftInputMode="stateVisible|adjustResize"
+            		android:theme="@android:style/Theme.Dialog">
         </activity>   
         <activity 	android:name=".AddUnitActivity"
             		android:screenOrientation="portrait"
-            		android:theme="@android:style/Theme.Dialog"
-        			android:label="@string/mainAddTimer">
+            		android:windowSoftInputMode="stateVisible|adjustResize"
+            		android:theme="@android:style/Theme.Dialog">
         </activity>   
     </application>
 </manifest>

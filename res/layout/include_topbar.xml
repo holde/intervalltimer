@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	style="@style/topbar_linearlayout">
+    <include layout="@layout/include_icon"/>
+	<include layout="@layout/include_topbar_title"/>
+</LinearLayout>

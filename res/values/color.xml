@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="orange">#eebb55</color>
     <color name="button">#222222</color>
     <color name="buttontext">#888888</color>
 	<color name="green">#00ff00</color>
 	<color name="blue">#0000ff</color>
-	<color name="darkorange">#bb6600</color>
+	<color name="darkorange">#f69821</color>
+	<color name="darkgrey">#111111</color>
+	<color name="darktransp">#33222222</color>
+	
+	<color name="listview_background">#FF111111</color>
+	<color name="listview_unit_large">#ffeebb55</color>
+	<color name="listview_exercise_large">#ffeebb55</color>
+	
 </resources>

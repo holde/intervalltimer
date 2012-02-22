@@ -1,0 +1,5 @@
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/bottombar_buttons"
+	android:id="@+id/bottom_prev_btn"
+	android:contentDescription="@string/bottom_prev_btn"
+	android:src="@android:drawable/ic_media_previous"/>

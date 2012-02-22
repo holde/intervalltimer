@@ -3,23 +3,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    <Button
-        android:id="@+id/exerciseRunBt"
-        android:textSize="30sp"
-        android:layout_margin="10sp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="GO" />
-    <Button
-        android:id="@+id/exerciseAddBtn"
-        android:textSize="30sp"
-        android:layout_margin="10sp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="ADD UNIT" />
+    <include layout="@layout/include_topbar"/>
     <ListView
-		android:id="@+id/exerciseDetailsLv"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent" >
+		 android:id="@+id/listview"
+         android:layout_width="match_parent"
+         android:background="#FF111111"
+         android:scrollingCache="false"
+         android:fadingEdge="none"
+         android:layout_weight="1"
+         android:layout_height="0dp" >
     </ListView>
+    <LinearLayout style="@style/bottombar_linearlayout">
+		<include layout="@layout/include_bottom_run_btn"/>
+        <include layout="@layout/include_divider"/>
+    	<include layout="@layout/include_bottom_add_btn"/>
+    </LinearLayout>        
 </LinearLayout>

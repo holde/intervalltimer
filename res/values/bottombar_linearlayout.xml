@@ -1,0 +1,4 @@
+<resources>
+    <style name="bottombar_linearlayout" parent="@style/bars_linearlayout">
+    </style>
+</resources>

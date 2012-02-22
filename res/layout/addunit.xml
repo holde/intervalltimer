@@ -1,61 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:timepicker="http://schemas.android.com/apk/res/com.tobiasbrentrop.intervalltimer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_weight="7"
-			android:textSize="30sp"
-			android:gravity="center"
-            android:layout_height="match_parent"
-            android:text="Add Unit" />
-
-        <Button
-            android:id="@+id/addTimerBtn"
-            android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <LinearLayout style="@style/dialog_linearlayout">
+	    <EditText
+	        android:id="@+id/add_dialog_name"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="match_parent"
+	        android:singleLine="true"
+	        android:hint="@string/add_exercise_hint"
+	        android:layout_height="wrap_content" >
+	        <requestFocus />
+	    </EditText>        
+         <com.tobiasbrentrop.IntervallPicker.TimePicker
+            android:id="@+id/add_dialog_prep"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="OK" />
+            timepicker:title_text="Preparation"
+            timepicker:title_color="#ff553300"/>  
+         <com.tobiasbrentrop.IntervallPicker.TimePicker
+            android:id="@+id/add_dialog_dur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            timepicker:title_text="Workout"
+            timepicker:title_color="#ff002200" />
+         <com.tobiasbrentrop.IntervallPicker.TimePicker
+            android:id="@+id/add_dialog_rep"
+            timepicker:title_color="#ff222222"
+			android:layout_marginTop="10dp"
+            timepicker:title_text="Repetitions"
+            timepicker:left_unit="hidden"
+            timepicker:right_unit="repetitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" /> 
+         <com.tobiasbrentrop.IntervallPicker.TimePicker
+            android:id="@+id/add_dialog_rest"
+            timepicker:title_color="#ff220000"
+            timepicker:title_text="Rest"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+         <com.tobiasbrentrop.IntervallPicker.TimePicker
+            android:id="@+id/add_dialog_cool"
+            timepicker:title_color="#ff440000"
+            timepicker:title_text="Cooldown"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/addUnitNameEt"
-        android:layout_marginTop="10sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/addUnitPrepEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/addUnitDurEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/addUnitRepEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/addUnitRestEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-
-</LinearLayout>
+	    <include layout="@layout/include_ok_cancel"/>
+     
+	</LinearLayout>
+</ScrollView>

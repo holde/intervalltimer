@@ -1,10 +1,6 @@
 package com.tobiasbrentrop.intervalltimer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Application;
-import android.database.Cursor;
 import android.util.Log;
 
 public class IntervallTimerApp extends Application {

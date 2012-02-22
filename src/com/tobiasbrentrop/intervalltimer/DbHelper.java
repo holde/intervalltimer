@@ -1,5 +1,7 @@
 package com.tobiasbrentrop.intervalltimer;
  
+import com.tobiasbrentrop.intervalltimer.ExerciseUnit.Time;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,7 +13,7 @@ public class DbHelper {
 	
    private static final String TAG = "IT: DbHelper";
  
-   private static final String DATABASE_NAME = "intervalltimer.db";
+   private static final String DATABASE_NAME = "itimer.db";
    private static final int DATABASE_VERSION = 1;
    private static final String UNIT_TABLE = "exerciseunits";
    private static final String EXERCISE_TABLE = "exerciselist";
@@ -22,60 +24,79 @@ public class DbHelper {
    public DbHelper(Context context) {
       this.context = context;
       OpenHelper openHelper = new OpenHelper(this.context);
-      this.db = openHelper.getWritableDatabase();
+      this.db = openHelper.getWritableDatabase();      
    }
- 
-   public void addNewExercise(String name) {
-	   Cursor cursor = selectAllExercises();
-	   // get next available position
-	   insertExercise(name, cursor.getCount() + 1, "new exercise");
+   /** GETTER */ 
+   public String getExerciseName(long id) {
+	  Cursor cursor = this.db.query(EXERCISE_TABLE,
+				new String[] {"name"}, 
+				"_id="+id,
+				null, null, null,
+				"position asc");
+	  if (cursor.moveToFirst()) {
+		  return cursor.getString(0);
+	  } else {
+		  return "error";
+	  }
    }
-   
-   public long insertUnit(ExerciseUnit unit, long exerciseId) {
-	   ContentValues cv = new ContentValues();
-	   cv.put("name", unit.getName());
-	   cv.put("preptime", unit.getPreparationTime());
-	   cv.put("durationtime", unit.getDuration());
-	   cv.put("repetitions", unit.getRepetitions());
-	   cv.put("resttime", unit.getRestTime());
-	   // pos in db starts with 1
-	   cv.put("position", selectUnitsFromExercise(exerciseId).getCount() + 1);
-	   cv.put("exerciseid", exerciseId);
-	   cv.put("info", unit.toString());
-	   return db.insert(UNIT_TABLE, null, cv);
+   public String getExerciseInfo(long id) {
+	   Cursor cursor = this.db.query(EXERCISE_TABLE,
+				new String[] {"info"}, 
+				"_id="+id,
+				null, null, null,
+				"position asc");
+	  if (cursor.moveToFirst()) {
+		  return cursor.getString(0);
+	  } else {
+		  return "error";
+	  }
    }
-   
-   public long insertExercise(String name, int position, String info) {
-	   ContentValues cv = new ContentValues();
-	   cv.put("name", name);
-	   cv.put("position", position);
-	   cv.put("info", info);
-	   return this.db.insert(EXERCISE_TABLE, null, cv);
+   public String getUnitName(long id) {
+	   return getStringColumn(id, UNIT_TABLE, "name");
+   }
+   public String getStringColumn(long id, String table, String column) {
+	   Cursor cursor = this.db.query(table,
+				new String[] {column}, 
+				"_id="+id,
+				null, null, null, null);
+	  if (cursor.moveToFirst()) {
+		  return cursor.getString(0);
+	  } else {
+		  return "error";
+	  }
+   }
+   public int getIntColumn(long id, String table, String column) {
+	   Cursor cursor = this.db.query(table,
+				new String[] {column}, 
+				"_id="+id,
+				null, null, null, null);
+	  if (cursor.moveToFirst()) {
+		  return cursor.getInt(0);
+	  } else {
+		  return Integer.MAX_VALUE;
+	  }
+   }
+   public int getUnitTotalTime(long id) {
+	   return getIntColumn(id, UNIT_TABLE, "totaltime");
+   }
+   public int getUnitPosition(long id) {
+	   Cursor cursor = this.db.query(UNIT_TABLE,
+				new String[] {"position"}, 
+				"_id="+id,
+				null, null, null,
+				"position asc");
+	  if (cursor.moveToFirst()) {
+		  return cursor.getInt(0);
+	  } else {
+		  return Integer.MAX_VALUE;
+	  }
    }
 
-   public void insertUnit(String name, int prep, int duration, int reps, int rest,
-			long longExtra) {
-		
-	}   
- 
-   public void deleteAll() {
-	   this.db.delete(UNIT_TABLE, null, null);
-	   this.db.delete(EXERCISE_TABLE, null, null);
-   }
-   
-   public void deleteExercise(long id) {
-	   this.db.delete(EXERCISE_TABLE, "_id="+id, null);
-	   this.db.delete(UNIT_TABLE, "exerciseid="+id, null);
-   }
-   public void deleteUnit(long id) {
-	   this.db.delete(UNIT_TABLE, "_id="+id, null);		
-	}
    public Cursor selectAllUnits() {
       Cursor cursor = this.db.query(UNIT_TABLE, null, 
-        null, null, null, null, "id asc");
+    		  	null, null, null, null, "id asc");
       return cursor;
-   }
-   
+	   }
    public Cursor selectUnitsFromExercise(long exerciseId) {
       Cursor cursor = this.db.query(UNIT_TABLE,
 				null, 
@@ -84,23 +105,98 @@ public class DbHelper {
 				"position asc");
   	  return cursor;	   
    }
-   
    public Cursor selectAllExercises() {
       Cursor cursor = this.db.query(EXERCISE_TABLE,
 				null, null, null, null, null,
 				"position desc");
       return cursor;
    }
-   
    public Cursor selectUnitFromId(long unitId) {
       Cursor cursor = this.db.query(UNIT_TABLE,
 				null, 
 				"_id="+Long.toString(unitId),
 				null, null, null, null);
       return cursor;	   
+   }   
+   /** ADDER */
+   public long insertExercise(String name) {
+	   ContentValues cv = new ContentValues();
+	   cv.put("name", name);
+	   // get next available position
+	   Cursor cursor = selectAllExercises();
+	   int position;
+	   if (cursor == null) {
+		   position = 1;
+	   } else {
+		   position = cursor.getCount();
+	   }
+	   cv.put("position", position);
+	   // make toString
+	   cv.put("info", "0 units ("+BaseActivity.timeString(0)+")");
+	   return this.db.insert(EXERCISE_TABLE, null, cv);
    }
+   public long insertUnit(ExerciseUnit unit, long exerciseId) {
+	   ContentValues cv = new ContentValues();
+	   cv.put("name", unit.getName());
+	   cv.put("preptime", unit.getTime(Time.PREPARATION));
+	   cv.put("durationtime", unit.getTime(Time.WORKOUT));
+	   cv.put("repetitions", unit.getTime(Time.REPETITIONS));
+	   cv.put("resttime", unit.getTime(Time.REST));
+	   // pos in db starts with 1
+	   cv.put("position", selectUnitsFromExercise(exerciseId).getCount() + 1);
+	   cv.put("exerciseid", exerciseId);
+	   cv.put("info", unit.toString());
+	   // total duration of this unit
+	   cv.put("totaltime", unit.getTime(Time.TOTAL));
+	   // update total time of exercise
+	   updateExerciseTime(exerciseId, unit.getTime(Time.TOTAL));
+	   updateExerciseUnitCount(exerciseId, 1);
+	   updateExerciseInfo(exerciseId);
+	   return db.insert(UNIT_TABLE, null, cv);
+   }
+   /** UPDATER */
+   public int updateExerciseName(String name, long exerciseId) {
+	   ContentValues cv = new ContentValues();
+	   cv.put("name", name);
+	   return db.update(EXERCISE_TABLE, cv, "_id="+exerciseId, null);
+   }
+   private void updateExerciseTime(long exerciseId, int time) {
+	   this.db.execSQL("UPDATE "+EXERCISE_TABLE+" SET time=time+"+time+" WHERE _id="+exerciseId);
+   }
+   private void updateExerciseUnitCount(long exerciseId, int amount) {
+	   this.db.execSQL("UPDATE "+EXERCISE_TABLE+" SET unitcount=unitcount+"+amount+" WHERE _id="+exerciseId);
+   }
+   private void updateExerciseInfo(long exerciseId) {
+	   String info = ""+getIntColumn(exerciseId, EXERCISE_TABLE, "unitcount")+
+	   				 " units ("+BaseActivity.timeString(getIntColumn(exerciseId, EXERCISE_TABLE, "time"))+")";
+	   this.db.execSQL("UPDATE "+EXERCISE_TABLE+" SET info=\""+info+"\" WHERE _id="+exerciseId);
+   }
+   /** DELETER */
+   public void deleteAll() {
+	   this.db.delete(UNIT_TABLE, null, null);
+	   this.db.delete(EXERCISE_TABLE, null, null);
+   }
+   public void deleteExercise(long id) {
+	   int position = getIntColumn(id, EXERCISE_TABLE, "position");
+	   // delete exercise and respectiv units
+	   this.db.delete(EXERCISE_TABLE, "_id="+id, null);
+	   this.db.delete(UNIT_TABLE, "exerciseid="+id, null);
+	   // update exercise positions
+	   this.db.execSQL("UPDATE "+EXERCISE_TABLE+" SET position=position-1 WHERE position > "+position);
+   }
+   public void deleteUnit(long unitId, long exerciseId) {
+	   int position = getIntColumn(unitId, UNIT_TABLE, "position");
+	   updateExerciseTime(exerciseId, (-1)*getIntColumn(unitId, UNIT_TABLE, "totaltime"));
+	   Log.d(TAG, ""+getIntColumn(unitId, UNIT_TABLE, "totaltime"));
+	   updateExerciseUnitCount(exerciseId, -1);
+	   updateExerciseInfo(exerciseId);
+	   
+	   this.db.delete(UNIT_TABLE, "_id="+unitId, null);
+	   // update unit positions
+	   this.db.execSQL("UPDATE "+UNIT_TABLE+" SET position=position-1 WHERE position > "+position+" AND exerciseid = "+exerciseId);
+	}
    
-   private static class OpenHelper extends SQLiteOpenHelper {
+   private class OpenHelper extends SQLiteOpenHelper {
  
       OpenHelper(Context context) {
          super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -112,18 +208,21 @@ public class DbHelper {
         		    "(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
         		    " name TEXT," +
         		    " preptime INTEGER," +
-        		    " durationtime INTEGER," +
+        		    " workouttime INTEGER," +
         		    " repetitions INTEGER," +
         		    " resttime INTEGER," +
+        		    " cooltime INTEGER," +
         		    " position INTEGER," +
         		    " exerciseid INTEGER," +
-        		    " info TEXT)");
+        		    " info TEXT," +
+        		    " totaltime INTEGER)");
          db.execSQL("CREATE TABLE " + EXERCISE_TABLE +
 		    		"(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
 		    		" name TEXT," +
-		    		" position INTEGER, " +
-		    		" info TEXT)");
-         Log.i(TAG, "Create DB: (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)");
+		    		" position INTEGER," +
+		    		" info TEXT," +
+		    		" unitcount INTEGER DEFAULT 0," +
+		    		" time INTEGER DEFAULT 0)");
       }
  
       @Override

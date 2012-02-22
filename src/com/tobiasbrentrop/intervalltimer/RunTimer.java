@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class RunTimer extends BaseActivity {
@@ -71,31 +72,30 @@ public class RunTimer extends BaseActivity {
 		startTimer();
     }
 
-	
 	private void registerEvents() {
-		((Button)findViewById(R.id.nextBtn)).setOnClickListener(new OnClickListener() {
+		((ImageButton)findViewById(R.id.bottom_next_btn)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				nextUnit();
 			}
 		});
-		((Button)findViewById(R.id.prevBtn)).setOnClickListener(new OnClickListener() {
+		((ImageButton)findViewById(R.id.bottom_prev_btn)).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				prevUnit();
 			}
 		});
-		final Button pauseBtn = (Button)findViewById(R.id.runPauseBt);
+		final ImageButton pauseBtn = (ImageButton)findViewById(R.id.bottom_run_btn);
 		pauseBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (pauseBtn.getText().equals("PAUSE")) {
-					pauseBtn.setText("RESUME");
-					cdTimer.cancel();
-				} else {
-					startTimer();
-					pauseBtn.setText("PAUSE");
-				}				
+//				if (pauseBtn.getText().equals("PAUSE")) {
+//					pauseBtn.setText("RESUME");
+//					cdTimer.cancel();
+//				} else {
+//					startTimer();
+//					pauseBtn.setText("PAUSE");
+//				}				
 			}
 		});		
 	}

@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     android:keepScreenOn="true"
     android:orientation="vertical" >
+    <include layout="@layout/include_topbar"/>
     <TextView
 	    android:id="@+id/prevExTv"
 	    android:layout_width="fill_parent"
@@ -12,7 +13,7 @@
 	    android:textSize="18sp" />
     <TextView
 	    android:id="@+id/currExTv"
-	    android:textColor="@color/orange"
+	    android:textColor="@color/listview_exercise_large"
 	    android:layout_width="fill_parent"
 	    android:layout_marginLeft="10sp"
 	    android:layout_height="wrap_content"
@@ -26,7 +27,8 @@
     <TextView
         android:id="@+id/runTimerTypeTv"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp"
         android:padding="5sp"
         android:textSize="50sp"
         android:gravity="center"
@@ -93,40 +95,11 @@
 	        android:text="0/3"
 	        android:textSize="30sp" />
 	</LinearLayout>
- 	<LinearLayout
-	    android:layout_width="fill_parent"
-	    android:gravity="bottom|center"
-	    android:layout_height="fill_parent"
-	    android:orientation="horizontal" >
-		<Button
-	        android:id="@+id/prevBtn"
-	        android:background="@color/button"
-	        android:textColor="@color/buttontext"
-	        android:textSize="30sp"
-	        android:layout_margin="5sp"
-	        android:padding="5sp"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="PREV" />
-		<Button
-	        android:id="@+id/nextBtn"
-	        android:background="@color/button"
-	        android:textColor="@color/buttontext"
-	        android:textSize="30sp"
-	        android:layout_margin="5sp"
-	        android:padding="5sp"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="NEXT" />
-	    <Button
-	        android:id="@+id/runPauseBt"
-	        android:background="@color/button"
-	        android:textColor="@color/buttontext"
-	        android:textSize="30sp"
-	        android:padding="5sp"
-	        android:layout_margin="5sp"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="PAUSE" />		
+ 	<LinearLayout style="@style/bottombar_linearlayout">
+ 	    <include layout="@layout/include_bottom_prev_btn"/>
+ 	    <include layout="@layout/include_divider"/>
+ 	    <include layout="@layout/include_bottom_next_btn"/>
+ 	    <include layout="@layout/include_divider"/>
+ 	    <include layout="@layout/include_bottom_run_btn"/>	
 	</LinearLayout>	
 </LinearLayout>
