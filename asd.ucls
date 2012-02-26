@@ -1,0 +1,228 @@
+<class-diagram version="1.0.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.AddExerciseActivity" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/AddExerciseActivity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1284" y="283"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.AddUnitActivity" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/AddUnitActivity.java" 
+    binary="false">    
+    <position height="387" width="161" x="275" y="192"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.BaseActivity" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/BaseActivity.java" 
+    binary="false">    
+    <position height="115" width="144" x="476" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.DbHelper" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/DbHelper.java" binary="false">    
+    <position height="-1" width="-1" x="828" y="787"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.DbHelper.OpenHelper" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/DbHelper.java" binary="false">    
+    <position height="-1" width="-1" x="969" y="1095"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.Exercise" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/Exercise.java" binary="false">    
+    <position height="307" width="192" x="41" y="827"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.ExerciseDetailActivity" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/ExerciseDetailActivity.java" 
+    binary="false">    
+    <position height="307" width="336" x="476" y="192"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="8" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.ExerciseUnit.Mode" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/ExerciseUnit.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="354" y="982"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.ExerciseUnit.Time" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/ExerciseUnit.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="553" y="1030"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="10" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.ExerciseUnit" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/ExerciseUnit.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="420" y="737"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="11" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.IntervallTimerApp" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/IntervallTimerApp.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1187" y="927"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="12" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.MainActivity" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/MainActivity.java" 
+    binary="false">    
+    <position height="259" width="336" x="852" y="192"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="13" corner="BOTTOM_RIGHT" language="java" name="com.tobiasbrentrop.intervalltimer.RunTimerActivityActivity" 
+    project="Intervall Timer" file="/Intervall Timer/src/com/tobiasbrentrop/intervalltimer/RunTimerActivity.java" 
+    binary="false">    
+    <position height="595" width="175" x="60" y="192"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <nesting id="14">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <association id="15">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="16" name="db"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="18">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </nesting>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="21">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="22" name="db"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="25" name="exercises"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <bendpoint x="263" y="827"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="28" name="currentUnit"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="30">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <association id="31">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="32" name="db"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="35" name="currentExercise"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="38" name="db"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <bendpoint x="284" y="827"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="41" name="exUnit"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="44" name="db"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="48" name="db"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="false" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="false" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="true"/>
+</class-diagram>

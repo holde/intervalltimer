@@ -60,16 +60,20 @@ public class MainActivity extends BaseActivity {
                 new int[] {R.id.text1, R.id.text2});
         exerciseList.setAdapter(adapter);
         registerForContextMenu(exerciseList);
+        // on list item click
         exerciseList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-						Intent exDetail = new Intent(MainActivity.this, ExerciseDetailActivity.class);
-						exDetail.putExtra("exerciseId", id);
-						startActivity(exDetail);
-						// fade transition
-						overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-						Log.i(TAG, "Show detail for exercise "+id);
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent next;
+				if (db.getExerciseUnitCount(id) != 0) {
+					next = new Intent(MainActivity.this, RunTimerActivity.class);
+				} else {
+					next = new Intent(MainActivity.this, ExerciseDetailActivity.class);
+				}
+				next.putExtra("exerciseId", id);
+				startActivity(next);
+				// fade transition
+				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 			}
 		});
     }
@@ -78,8 +82,14 @@ public class MainActivity extends BaseActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
+		AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+		exId = info.id;
+		if (db.getExerciseUnitCount(exId) == 0) {
+			menu.add(0, START, 0, "Start").setEnabled(false);
+		} else {
+			menu.add(0, START, 0, "Start").setEnabled(true);
+		}
 		menu.add(0, DETAILS, 0, "Details");
-		menu.add(0, START, 0, "Start");
 		menu.add(0, EDIT, 0, "Edit");
 		menu.add(0, DELETE, 0, "Delete");
 	}
@@ -101,7 +111,7 @@ public class MainActivity extends BaseActivity {
 				startActivity(exDetail);
 				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 				break;
-		case START: Intent runTimer = new Intent(MainActivity.this, RunTimer.class);
+		case START: Intent runTimer = new Intent(MainActivity.this, RunTimerActivity.class);
 				runTimer.putExtra("exerciseId", exId);
 				startActivity(runTimer);
 				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

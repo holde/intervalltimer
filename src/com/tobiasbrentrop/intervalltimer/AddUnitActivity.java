@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+
 import com.tobiasbrentrop.IntervallPicker.TimePicker;
+import com.tobiasbrentrop.IntervallPicker.TimePicker.OnTimeChangedListener;
 import com.tobiasbrentrop.intervalltimer.ExerciseUnit.Time;
 
 public class AddUnitActivity extends Activity {
@@ -20,82 +22,125 @@ public class AddUnitActivity extends Activity {
 	// ui
 	private EditText et;
 	private TimePicker mPrepPicker;
-	private TimePicker mDurPicker;
+	private TimePicker mWorkPicker;
 	private TimePicker mRepPicker;
 	private TimePicker mRestPicker;
 	private TimePicker mCoolPicker;
 	
 	// state
-	private String name;
+	private String[] title = new String[2];
+	private String mName;
 	private int mPrep;
-	private int mDur;
+	private int mWork;
 	private int mRep;
 	private int mRest;
 	private int mCool;
+	private int mTotal;
 	private long exerciseId;
 	private long unitId;
 	private boolean edit;
 	private ExerciseUnit exUnit;
 	
+	/**
+	 * TextWatcher for unit name edittext
+	 */
 	private final TextWatcher UPDATE_TITLE = new TextWatcher() {
 		
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			setTitle(et.getText().toString());				
+			title[1] = et.getText().toString();
+			mName = title[1];
+			updateTitle();			
 		}
 		
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
-			// TODO Auto-generated method stub
 		}
 		
 		@Override
 		public void afterTextChanged(Editable s) {
-			// TODO Auto-generated method stub
 		}
-	};	
+	};
+
+	/**
+	 * Listener for timepicker. changes title
+	 */
+	private final OnTimeChangedListener PICKER_LISTENER = new OnTimeChangedListener() {
+		 public void onTimeChanged(TimePicker view, int minute, int second) {
+			 int temp = minute*60 + second;
+			 switch (view.getId()) {
+			 case R.id.add_dialog_prep:
+				 mPrep = temp; 
+				 break;
+			 case R.id.add_dialog_dur:
+				 mWork = temp;
+				 break;
+			 case R.id.add_dialog_rep:
+				 mRep = second;
+				 break;
+			 case R.id.add_dialog_rest:
+				 mRest = temp;
+				 break;
+			 case R.id.add_dialog_cool:
+				 mCool = temp;
+				 break;
+			 }
+			 calculateTimes();
+			 updateTitle();
+		 }
+	 };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addunit);
+		// global db
 		db = ((IntervallTimerApp)getApplicationContext()).getDb();
 		// ui elements
 		et = (EditText)findViewById(R.id.add_dialog_name);
 		mPrepPicker = (TimePicker)findViewById(R.id.add_dialog_prep);
-		mDurPicker = (TimePicker)findViewById(R.id.add_dialog_dur);
+		mWorkPicker = (TimePicker)findViewById(R.id.add_dialog_dur);
 		mRepPicker = (TimePicker)findViewById(R.id.add_dialog_rep);
 		mRestPicker = (TimePicker)findViewById(R.id.add_dialog_rest);
 		mCoolPicker = (TimePicker)findViewById(R.id.add_dialog_cool);
-		
-		// update title
+		// set listener
+		mPrepPicker.setOnTimeChangedListener(PICKER_LISTENER);
+		mWorkPicker.setOnTimeChangedListener(PICKER_LISTENER);
+		mRepPicker.setOnTimeChangedListener(PICKER_LISTENER);
+		mRestPicker.setOnTimeChangedListener(PICKER_LISTENER);
+		mCoolPicker.setOnTimeChangedListener(PICKER_LISTENER);
 		et.addTextChangedListener(UPDATE_TITLE);
 		// get unit/exid
 		exerciseId = getIntent().getLongExtra("exerciseId", 0);
 		unitId = getIntent().getLongExtra("unitId", 0);
 		// if new unit
 		if (unitId == 0) {
-			setTitle("New Exercise");
+			title[1] = "New Exercise"; 
+			updateTitle();
 			edit = false;
 		// if edit
 		} else {
 			edit = true;
-			exUnit = 
-			getValues();
+			exUnit = db.getUnit(unitId);
+			getValues(exUnit);
 			setTimePicker();
-			setTitle(BaseActivity.timeString(db.getUnitTotalTime(unitId))+" "+db.getUnitName(unitId));
+			title[1] = mName;
+			et.setText(mName);
+			updateTitle();
 		}
         // on ok button click
 		((Button)findViewById(R.id.add_dialog_ok_btn)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// go back to list
-				if (!name.equals("")) {
-					exUnit = new ExerciseUnit(name, prep, duration, reps, rest);
+				exUnit = new ExerciseUnit(mName, mPrep, mWork, mRep, mRest, mCool);
+				if (!edit) {
 					db.insertUnit(exUnit, exerciseId);
-					Log.i(TAG, "Add New Unit: "+name);
+					Log.i(TAG, "Add New Unit: "+mName);
+				} else {
+					db.updateUnit(unitId, exerciseId, exUnit);
+					Log.i(TAG, "Edited Unit: "+mName);
 				}
 				finish();
 			}
@@ -109,12 +154,48 @@ public class AddUnitActivity extends Activity {
 		});
 	}
 
-	private void getValues() {
-		mPrep = db.get
+	/**
+	 * Set local time parameters
+	 * @param unit Current unit
+	 */
+	private void getValues(ExerciseUnit unit) {
+		mPrep = unit.getTime(Time.PREPARATION);
+		mWork = unit.getTime(Time.WORKOUT);
+		mRep = unit.getTime(Time.REPETITIONS);
+		mRest = unit.getTime(Time.REST);
+		mCool = unit.getTime(Time.COOL_DOWN);
+		mTotal = unit.getTime(Time.TOTAL);
+		mName = unit.getName();
 	}
 
+	/**
+	 * Sets the Picker to the correct times
+	 */
 	private void setTimePicker() {
-		
-		
+		mPrepPicker.setTime(mPrep);
+		mWorkPicker.setTime(mWork);
+		mRepPicker.setTime(mRep);
+		mRestPicker.setTime(mRest);
+		mCoolPicker.setTime(mCool);
+	}
+	
+	/**
+	 * Updates title of dialog
+	 */
+	private void updateTitle() {
+		title[0] = BaseActivity.timeString(mTotal, true);
+		setTitle(title[0]+" "+title[1]);
+	}
+
+	/**
+	 * Recalculate total time
+	 */
+	private void calculateTimes() {
+		if (mRep != 0) {
+			mTotal = mPrep + (mWork + mRest) * (mRep - 1) + mWork + mCool; 
+		} else {
+			mTotal = mPrep + mCool;
+		}
 	}
 }
+	 

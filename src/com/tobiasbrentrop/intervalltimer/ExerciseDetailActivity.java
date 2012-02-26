@@ -14,11 +14,11 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 public class ExerciseDetailActivity extends BaseActivity {
@@ -34,6 +34,20 @@ public class ExerciseDetailActivity extends BaseActivity {
 	final static int DETAILS = 2;
 	final static int START = 3;
 	
+	/**
+	 * Custom ViewBinder to get formatted time in ListView
+	 */
+	final static ViewBinder VIEW_BINDER = new ViewBinder() {
+
+		@Override
+		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+			if (view.getId() != R.id.lv_time) return false;
+			((TextView)view).setText("("+BaseActivity.timeString(cursor.getInt(columnIndex), true)+")");
+			return true;
+		}
+		
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,18 +58,25 @@ public class ExerciseDetailActivity extends BaseActivity {
 		db = ((IntervallTimerApp)getApplicationContext()).getDb();
 		// set title
 		((TextView)findViewById(R.id.topbar_title)).setText(db.getExerciseName(exerciseId)+"\n"+db.getExerciseInfo(exerciseId));
+		// hide play button if exercise is empty
+		if (db.getExerciseUnitCount(exerciseId) == 0) {
+			findViewById(R.id.bottom_run_btn).setVisibility(View.GONE);
+			findViewById(R.id.bottom_divider).setVisibility(View.GONE);
+		}
 		// listview stuff
 		unitCursor = db.selectUnitsFromExercise(exerciseId);
         startManagingCursor(unitCursor);
-        ListAdapter adapter = new SimpleCursorAdapter(
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(	// TODO: sca deprecated??
                 this,
                 R.layout.exdetaillistviewentry,
                 unitCursor,
-                new String[] {"name", "info"},
-                new int[] {R.id.text1, R.id.text2});
+                new String[] {"name", "info", "totaltime"},
+                new int[] {R.id.lv_title, R.id.lv_info, R.id.lv_time});
+        adapter.setViewBinder(VIEW_BINDER);
         ListView exDetailLv = (ListView)findViewById(R.id.listview);
         exDetailLv.setAdapter(adapter);
         registerForContextMenu(exDetailLv);
+        // on click on list item
         exDetailLv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -68,7 +89,7 @@ public class ExerciseDetailActivity extends BaseActivity {
 			// run timer
 			@Override
 			public void onClick(View v) {
-				Intent runTimer = new Intent(ExerciseDetailActivity.this, RunTimer.class);
+				Intent runTimer = new Intent(ExerciseDetailActivity.this, RunTimerActivity.class);
 				runTimer.putExtra("exerciseId", exerciseId);
 				startActivity(runTimer);
 				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -82,6 +103,12 @@ public class ExerciseDetailActivity extends BaseActivity {
 			}
 		});		
 	}
+	
+	/**
+	 * Wrapper that puts extras and sets animation before starting edit activity
+	 * @param exerciseId
+	 * @param unitId
+	 */
 	protected void startEditActivity(long exerciseId, long unitId) {
 		Intent addUnit = new Intent(ExerciseDetailActivity.this, AddUnitActivity.class);
 		addUnit.putExtra("exerciseId", exerciseId);
@@ -95,8 +122,6 @@ public class ExerciseDetailActivity extends BaseActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-//		menu.add(0, DETAILS, 0, "Details");
-//		menu.add(0, START, 0, "Start");
 		menu.add(0, EDIT, 0, "Edit");
 		menu.add(0, DELETE, 0, "Delete");
 	}

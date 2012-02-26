@@ -1,4 +1,5 @@
-<View xmlns:android="http://schemas.android.com/apk/res/android" 
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_divider" 
 	android:layout_height="match_parent"
 	android:layout_width="1dp"
 	android:background="#FF555555"/>

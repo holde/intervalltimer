@@ -14,6 +14,7 @@ public class ExerciseUnit {
 		final static int TOTAL_WORKOUT = 7;
 	}
 	
+	// different exercise modes
 	public static enum Mode {
 		IDLE,
 		PREPARATION,
@@ -23,9 +24,10 @@ public class ExerciseUnit {
 	}
 
 	// state
-	private String mName;					// name of the unit 
-	private int[] mTimes = new int[8];		// 
-	private int[] mPeriods;
+	private String mName;					// name of the unit
+	private String mInfo;					// string rep of unit parameters 
+	private int[] mTimes = new int[8];		// unit parameters
+	private int[] mPeriods;					// unrolled periods
 	
 	/**
 	 * Constructor
@@ -46,16 +48,26 @@ public class ExerciseUnit {
 		calculateTimes();
 	}
 	
+	/**
+	 * Constructs an existing unit from an id 
+	 * @param id ExerciseUnit id
+	 */
+	public ExerciseUnit(long id) {
+		
+		
+	}
 	private void calculateTimes() {
 		if (mTimes[Time.REPETITIONS] != 0) {
-			mTimes[Time.TOTAL_REST] = mTimes[Time.REST] *
+			mTimes[Time.TOTAL_REST] =
+					mTimes[Time.PREPARATION] + 
+					mTimes[Time.REST] *
 					(mTimes[Time.REPETITIONS] - 1) +
 					mTimes[Time.COOL_DOWN];
 			mTimes[Time.TOTAL_WORKOUT] = mTimes[Time.REPETITIONS] * mTimes[Time.WORKOUT];
 			mTimes[Time.TOTAL] = mTimes[Time.TOTAL_REST] + mTimes[Time.TOTAL_WORKOUT];
 			mPeriods = new int[mTimes[Time.REPETITIONS] * 2 + 1];
 		} else {
-			mTimes[Time.TOTAL_REST] = mTimes[Time.COOL_DOWN];
+			mTimes[Time.TOTAL_REST] = mTimes[Time.PREPARATION] + mTimes[Time.COOL_DOWN];
 			mTimes[Time.TOTAL_WORKOUT] = 0;
 			mTimes[Time.TOTAL] = mTimes[Time.TOTAL_REST];
 			mPeriods = new int[2];
@@ -72,15 +84,41 @@ public class ExerciseUnit {
 		return mName;
 	}
 	
+	public String getTitle() {
+		return getName() + " ("+BaseActivity.timeString(mTimes[Time.TOTAL], false)+")";
+	}
+	
 	public int getTime(int time) {
 		return mTimes[time];
 	}
 	
 	public String getInfo() {
-		return ""+mTimes[Time.PREPARATION]+"s prep | " +
-				mTimes[Time.REPETITIONS]+"*"+mTimes[Time.WORKOUT]+"s work | " +
-				mTimes[Time.REST]+"s rest (" +
-				BaseActivity.timeString(mTimes[Time.TOTAL])+")";
+		boolean lineBefore = false;
+		mInfo = "";
+		if (mTimes[Time.PREPARATION] != 0) {
+			mInfo += BaseActivity.timeString(mTimes[Time.PREPARATION], false)+" preparation";
+			lineBefore = true;
+		}
+		if (mTimes[Time.REPETITIONS] != 0) {
+			if (lineBefore) {
+				mInfo += "\n";
+			}
+			lineBefore = true;
+			mInfo += BaseActivity.timeString(mTimes[Time.WORKOUT], false)+" work";
+			if (mTimes[Time.REPETITIONS] > 1) {
+				if (mTimes[Time.REST] != 0) {
+					mInfo += " with "+BaseActivity.timeString(mTimes[Time.REST], false)+" rest";
+				}
+				mInfo += " x "+mTimes[Time.REPETITIONS];
+			}
+		}
+		if (mTimes[Time.COOL_DOWN] != 0) {
+			if (lineBefore) {
+				mInfo += "\n";
+			}
+			mInfo += BaseActivity.timeString(mTimes[Time.COOL_DOWN], false)+" cool-down";
+		}
+		return mInfo;
 	}
 
 	public int[] getTimesArray() {

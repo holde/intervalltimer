@@ -3,10 +3,10 @@ package com.tobiasbrentrop.intervalltimer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tobiasbrentrop.intervalltimer.ExerciseUnit.Time;
+
 import android.database.Cursor;
 import android.util.Log;
-
-//import com.tobiasbrentrop.intervalltimer.ExerciseUnit;
 
 public class Exercise {
 	
@@ -24,12 +24,11 @@ public class Exercise {
 				ExerciseUnit eUnit = new ExerciseUnit(
 						cursor.getString(1), cursor.getInt(2),
 						cursor.getInt(3), cursor.getInt(4),
-						cursor.getInt(5));
-//				Log.i(TAG, cursor.getString(1)+ cursor.getInt(2)+ cursor.getInt(3)+ cursor.getInt(4)+ cursor.getInt(5));
+						cursor.getInt(5), cursor.getInt(6));
 				exercises.add(eUnit);
-				totalExerciseTime += eUnit.getTotalExerciseTime();
-				totalRestTime += eUnit.getTotalRestTime();
-				totalTime += eUnit.getTotalTime();
+				totalExerciseTime += eUnit.getTime(Time.TOTAL_WORKOUT);
+				totalRestTime += eUnit.getTime(Time.TOTAL_REST);
+				totalTime += eUnit.getTime(Time.TOTAL);
 			} while (cursor.moveToNext());
 		}
 		if (cursor != null && !cursor.isClosed()) {
@@ -39,7 +38,7 @@ public class Exercise {
 		leftTimes = new int[exercises.size()];
 		int countTime = 0;
 		for (int i = exercises.size() - 1; i >= 0; i--) {
-			countTime += exercises.get(i).getTotalTime();
+			countTime += exercises.get(i).getTime(Time.TOTAL);
 			leftTimes[i] = countTime;
 		}
 	}
@@ -63,6 +62,14 @@ public class Exercise {
 		return totalTime;
 	}
 	
+	public int getWorkTime() {
+		return totalExerciseTime;
+	}
+	
+	public int getRestTime() {
+		return totalRestTime;
+	}
+	
 	public int getTimeFrom(int pos) {
 		return leftTimes[pos];
 	}
@@ -75,7 +82,7 @@ public class Exercise {
 	}
 	
 	public String toString() {
-		Log.i(TAG, ""+BaseActivity.timeString(this.totalTime));
-		return ""+ exercises.size()+" exercises ("+BaseActivity.timeString(this.totalTime)+")";
+		Log.i(TAG, ""+BaseActivity.timeString(this.totalTime, true));
+		return ""+ exercises.size()+" exercises ("+BaseActivity.timeString(this.totalTime, true)+")";
 	}
 }

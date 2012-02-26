@@ -28,28 +28,13 @@ public class DbHelper {
    }
    /** GETTER */ 
    public String getExerciseName(long id) {
-	  Cursor cursor = this.db.query(EXERCISE_TABLE,
-				new String[] {"name"}, 
-				"_id="+id,
-				null, null, null,
-				"position asc");
-	  if (cursor.moveToFirst()) {
-		  return cursor.getString(0);
-	  } else {
-		  return "error";
-	  }
+	  return getStringColumn(id, EXERCISE_TABLE, "name");
    }
    public String getExerciseInfo(long id) {
-	   Cursor cursor = this.db.query(EXERCISE_TABLE,
-				new String[] {"info"}, 
-				"_id="+id,
-				null, null, null,
-				"position asc");
-	  if (cursor.moveToFirst()) {
-		  return cursor.getString(0);
-	  } else {
-		  return "error";
-	  }
+	   return getStringColumn(id, EXERCISE_TABLE, "info");
+   }
+   public int getExerciseUnitCount(long id) {
+	   return getIntColumn(id, EXERCISE_TABLE, "unitcount");
    }
    public String getUnitName(long id) {
 	   return getStringColumn(id, UNIT_TABLE, "name");
@@ -65,6 +50,7 @@ public class DbHelper {
 		  return "error";
 	  }
    }
+
    public int getIntColumn(long id, String table, String column) {
 	   Cursor cursor = this.db.query(table,
 				new String[] {column}, 
@@ -90,6 +76,21 @@ public class DbHelper {
 	  } else {
 		  return Integer.MAX_VALUE;
 	  }
+   }
+
+   public ExerciseUnit getUnit(long id) {
+	   Cursor cursor = selectUnitFromId(id);
+	   if (cursor.moveToFirst()) {
+		   return new ExerciseUnit(
+					cursor.getString(1), 	// name
+					cursor.getInt(2),		// prep
+					cursor.getInt(3),		// workout
+					cursor.getInt(4),		// rep
+					cursor.getInt(5),		// rest
+					cursor.getInt(6));		// cooldown
+	   } else {
+		   return null;
+	   }
    }
 
    public Cursor selectAllUnits() {
@@ -132,20 +133,21 @@ public class DbHelper {
 	   }
 	   cv.put("position", position);
 	   // make toString
-	   cv.put("info", "0 units ("+BaseActivity.timeString(0)+")");
+	   cv.put("info", "0 units ("+BaseActivity.timeString(0, true)+")");
 	   return this.db.insert(EXERCISE_TABLE, null, cv);
    }
    public long insertUnit(ExerciseUnit unit, long exerciseId) {
 	   ContentValues cv = new ContentValues();
 	   cv.put("name", unit.getName());
 	   cv.put("preptime", unit.getTime(Time.PREPARATION));
-	   cv.put("durationtime", unit.getTime(Time.WORKOUT));
+	   cv.put("workouttime", unit.getTime(Time.WORKOUT));
 	   cv.put("repetitions", unit.getTime(Time.REPETITIONS));
 	   cv.put("resttime", unit.getTime(Time.REST));
+	   cv.put("cooltime", unit.getTime(Time.COOL_DOWN));
 	   // pos in db starts with 1
 	   cv.put("position", selectUnitsFromExercise(exerciseId).getCount() + 1);
 	   cv.put("exerciseid", exerciseId);
-	   cv.put("info", unit.toString());
+	   cv.put("info", unit.getInfo());
 	   // total duration of this unit
 	   cv.put("totaltime", unit.getTime(Time.TOTAL));
 	   // update total time of exercise
@@ -168,8 +170,24 @@ public class DbHelper {
    }
    private void updateExerciseInfo(long exerciseId) {
 	   String info = ""+getIntColumn(exerciseId, EXERCISE_TABLE, "unitcount")+
-	   				 " units ("+BaseActivity.timeString(getIntColumn(exerciseId, EXERCISE_TABLE, "time"))+")";
+	   				 " units ("+BaseActivity.timeString(getIntColumn(exerciseId, EXERCISE_TABLE, "time"), true)+")";
 	   this.db.execSQL("UPDATE "+EXERCISE_TABLE+" SET info=\""+info+"\" WHERE _id="+exerciseId);
+   }
+   public void updateUnit(long unitId, long exerciseId, ExerciseUnit unit) {
+	   ContentValues cv = new ContentValues();
+	   cv.put("name", unit.getName());
+	   cv.put("preptime", unit.getTime(Time.PREPARATION));
+	   cv.put("workouttime", unit.getTime(Time.WORKOUT));
+	   cv.put("repetitions", unit.getTime(Time.REPETITIONS));
+	   cv.put("resttime", unit.getTime(Time.REST));
+	   cv.put("cooltime", Time.COOL_DOWN);
+	   cv.put("info", unit.getInfo());
+	   // total duration of this unit
+	   cv.put("totaltime", unit.getTime(Time.TOTAL));
+	   // update total time of exercise
+	   updateExerciseTime(exerciseId, unit.getTime(Time.TOTAL) - getUnitTotalTime(unitId));
+	   updateExerciseInfo(exerciseId);
+	   db.update(UNIT_TABLE, cv, "_id="+unitId, null);
    }
    /** DELETER */
    public void deleteAll() {
